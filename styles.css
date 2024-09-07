@@ -7,4 +7,114 @@
 
 body{
     font-family: "DM Sans", sans-serif;
+    background: #F8E9DD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
 }
+
+main{
+    max-width: 540px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header-balance{
+    background: #EC755D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 27px 32px;
+    border-radius: 20px;
+}
+
+.txt-header-balance{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.txt-header-balance p{
+    font-size: 18px;
+    
+}
+
+.txt-header-balance h3{
+    font-size: 32px;
+
+}
+
+.info-month-container{
+   background: #fff;
+   border-radius: 20px;
+   padding: 32px 40px;
+}
+
+.info-month-container h1{
+    font-size: 32px;
+}
+
+
+.chart-container{
+    position: relative;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.chart-container:after{
+    content: '';
+    width: 100%;
+    height: 4px;
+    background:grey;
+}
+
+
+.footer-balance{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.total-txt-footer-balance p{
+   color: #92857A;
+   font-size: 18px;
+}
+
+.total-txt-footer-balance h2{
+    font-size: 48px;
+ }
+
+ .number-last-month{
+    font-weight: 700;
+    font-size: 18px;
+ }
+
+ .info-last-month{
+    color: #92857A;
+    font-size: 18px;
+ }
+
+ .chart-container{
+    width: 100%;
+   
+    
+ }
+
+ .chart-container #myChart{
+   
+
+ }
+
+ #myChart {
+    border: none; /* Remove qualquer borda do contêiner */
+    outline: none; /* Remove qualquer contorno ao redor */
+  }

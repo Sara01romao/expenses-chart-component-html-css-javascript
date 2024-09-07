@@ -14,8 +14,8 @@
     
    
     <main>
-        <div>
-            <div>
+        <div class="header-balance">
+            <div class="txt-header-balance">
                 <p>My balance</p>
                 <h3>$921.48</h3>
             </div>
@@ -27,26 +27,111 @@
                 
          </div>
     
-         <div>
+         <div class="info-month-container">
             <h1>Spending - Last 7 days</h1>     
 
-            <div>
-
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
             </div>
 
-            <div>
-                <div>
+            <div class="footer-balance">
+                <div class="total-txt-footer-balance">
                     <p>Total this month</p>
                     <h2>$478.33</h2>
                 </div>
                 
-                <div>
-                    <p>+2.4% </p>
-                    <p>from last month</p>
+                <div class="last-month-footer-balance">
+                    <p class="number-last-month">+2.4% </p>
+                    <p class="info-last-month">from last month</p>
                 </div>
             </div>
          </div>
     </main>
+
+
      
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+       const dataValues = [10, 35, 52, 31, 60, 40, 28]; 
+
+    
+        const maxValue = Math.max(...dataValues);
+        const backgroundColors = dataValues.map(value => value === maxValue ? 'green' : 'red'); // Define 'green' para o maior valor e 'red' para os outros
+
+        new Chart(document.getElementById('myChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'],
+            datasets: [{
+            label: false,
+            data: dataValues,
+            backgroundColor: backgroundColors, 
+            hoverBackgroundColor: 'orange', 
+            borderWidth: 0,
+            borderRadius: 5 
+            }]
+        },
+        options: {
+            plugins: {
+            legend: {
+                display: false,
+                fontSize:'18px',
+            },
+            tooltip: {
+                callbacks: {
+                title: function() {
+                    return '';
+                },
+                label: function(context) {
+                    const value = context.raw;
+                    return `$${value}`;
+                },
+                afterLabel: function() {
+                    return ''; 
+                }
+                },
+                backgroundColor: 'white',
+                titleColor: 'black', 
+                bodyColor: 'black', 
+                borderColor: 'black', 
+                borderWidth: 1,
+                displayColors: false, 
+                borderRadius: 0 
+            }
+            },
+            layout: {
+            padding: 0
+            },
+            scales: {
+            x: {
+                grid: {
+                display: false,
+                borderColor: 'transparent'
+                },
+                ticks: {
+                font: {
+                    size: 15 
+                }
+                }
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                display: false,
+                borderColor: 'transparent'
+                },
+                ticks: {
+                display: false
+                }
+            }
+            }
+        }
+        });
+
+
+      
+   </script>
+
 </body>
 </html>
