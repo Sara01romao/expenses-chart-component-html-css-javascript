@@ -7,58 +7,72 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,700;1,9..40,700&display=swap" rel="stylesheet">
 
+
+    <script src='https://cdn.plot.ly/plotly-2.35.0.min.js'></script>
     <link rel="stylesheet" href="styles.css">
     <title>Expenses Chart Componen</title>
 </head>
 <body>
     
+
    
-    <main>
-        <div class="header-balance">
-            <div class="txt-header-balance">
-                <p>My balance</p>
-                <h3>$921.48</h3>
-            </div>
-    
-            <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="48" cy="24" r="24" fill="#382314"/>
-                <circle cx="24" cy="24" r="23" stroke="white" stroke-width="2"/>
-            </svg>
-                
-         </div>
-    
-         <div class="info-month-container">
-            <h1>Spending - Last 7 days</h1>     
-
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
-            </div>
-
-            <div class="footer-balance">
-                <div class="total-txt-footer-balance">
-                    <p>Total this month</p>
-                    <h2>$478.33</h2>
+        <main>
+            <div class="header-balance">
+                <div class="txt-header-balance">
+                    <p>My balance</p>
+                    <h3>$921.48</h3>
                 </div>
-                
-                <div class="last-month-footer-balance">
-                    <p class="number-last-month">+2.4% </p>
-                    <p class="info-last-month">from last month</p>
+        
+                <svg width="72" height="48" viewBox="0 0 72 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="48" cy="24" r="24" fill="#382314"/>
+                    <circle cx="24" cy="24" r="23" stroke="white" stroke-width="2"/>
+                </svg>
+                    
+             </div>
+        
+             <div class="info-month-container">
+                <h1>Spending - Last 7 days</h1>     
+    
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
                 </div>
-            </div>
-         </div>
-    </main>
+    
+                <div class="footer-balance">
+                    <div class="total-txt-footer-balance">
+                        <p>Total this month</p>
+                        <h2>$478.33</h2>
+                    </div>
+                    
+                    <div class="last-month-footer-balance">
+                        <p class="number-last-month">+2.4% </p>
+                        <p class="info-last-month">from last month</p>
+                    </div>
+                </div>
+             </div>
+    
+    
+             
+        </main>
+    
+   
+    
 
 
      
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-       const dataValues = [10, 35, 52, 31, 60, 40, 28]; 
 
-    
+        const dataValues = [10, 35, 52.36, 31.01, 25.50, 40, 28]; 
+
         const maxValue = Math.max(...dataValues);
-        const backgroundColors = dataValues.map(value => value === maxValue ? 'green' : 'red'); // Define 'green' para o maior valor e 'red' para os outros
+        const backgroundColors = dataValues.map(value => value === maxValue ? '#76B5BC' : '#EC755D'); // Define 'green' para o maior valor e 'red' para os outros
 
+
+            
+
+   
+    
         new Chart(document.getElementById('myChart').getContext('2d'), {
         type: 'bar',
         data: {
@@ -67,7 +81,6 @@
             label: false,
             data: dataValues,
             backgroundColor: backgroundColors, 
-            hoverBackgroundColor: 'orange', 
             borderWidth: 0,
             borderRadius: 5 
             }]
@@ -79,6 +92,7 @@
                 fontSize:'18px',
             },
             tooltip: {
+            
                 callbacks: {
                 title: function() {
                     return '';
@@ -91,13 +105,17 @@
                     return ''; 
                 }
                 },
-                backgroundColor: 'white',
+               
+                backgroundColor: '#382314',
                 titleColor: 'black', 
-                bodyColor: 'black', 
-                borderColor: 'black', 
+                bodyColor: 'white', 
+                borderColor: 'black',
                 borderWidth: 1,
                 displayColors: false, 
-                borderRadius: 0 
+                borderRadius: 4,
+                bodyFont: {
+                    size: 14 
+                }
             }
             },
             layout: {
@@ -125,9 +143,17 @@
                 display: false
                 }
             }
-            }
+            },
+
+            onHover: function(event, elements) {
+            const canvas = event.chart.canvas;
+            canvas.style.cursor = elements.length ? 'pointer' : 'default';
+        }
         }
         });
+
+        
+
 
 
       
